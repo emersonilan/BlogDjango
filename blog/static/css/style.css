@@ -189,3 +189,16 @@ footer {
 
     font-weight: bold;
 }
+
+.post-category {
+
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    color: #38bdf8;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}

@@ -36,6 +36,13 @@
                     {{ post.data_criacao|date:"d/m/Y" }}
                 </p>
 
+                <a
+                   class="post-category"
+                   href="/posts/?categoria={{ post.categoria.nome }}"
+    >
+                    {{ post.categoria.nome }}
+                </a>
+
                 <p>
                     {{ post.conteudo|truncatewords:20 }}
                 </p>

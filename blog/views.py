@@ -21,6 +21,8 @@ def posts(request):
 
     busca = request.GET.get('busca')
 
+    categoria = request.GET.get('categoria')
+
     posts = Post.objects.order_by(
         '-data_criacao'
     )
@@ -29,6 +31,12 @@ def posts(request):
 
         posts = posts.filter(
             titulo__icontains=busca
+        )
+
+    if categoria:
+
+        posts = posts.filter(
+            categoria__nome=categoria
         )
 
     return render(
