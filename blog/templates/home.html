@@ -32,6 +32,10 @@
                     {{ post.titulo }}
                 </h3>
 
+                <p class="post-date">
+                    {{ post.data_criacao|date:"d/m/Y" }}
+                </p>
+
                 <p>
                     {{ post.conteudo|truncatewords:20 }}
                 </p>

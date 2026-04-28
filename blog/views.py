@@ -5,11 +5,27 @@ from .models import Post
 
 def home(request):
 
-    posts = Post.objects.all()
+    posts = Post.objects.order_by(
+    '-data_criacao'
+)[:3]
 
     return render(
         request,
         'home.html',
+        {
+            'posts': posts
+        }
+    )
+
+def posts(request):
+
+    posts = Post.objects.order_by(
+    '-data_criacao'
+)
+
+    return render(
+        request,
+        'posts.html',
         {
             'posts': posts
         }
