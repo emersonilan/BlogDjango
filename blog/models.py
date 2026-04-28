@@ -1,8 +1,14 @@
 from django.db import models
 
+
 class Post(models.Model):
+
     titulo = models.CharField(max_length=200)
+
+    slug = models.SlugField(blank=True)
+
     conteudo = models.TextField()
+
     data_criacao = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

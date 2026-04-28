@@ -127,3 +127,17 @@ footer {
 
     font-weight: bold;
 }
+
+.post-detail h2 {
+
+    margin-bottom: 30px;
+
+    font-size: 42px;
+}
+
+.post-detail p {
+
+    line-height: 1.8;
+
+    font-size: 18px;
+}

@@ -15,6 +15,18 @@ def home(request):
         }
     )
 
+def post_detail(request, slug):
+
+    post = Post.objects.get(slug=slug)
+
+    return render(
+        request,
+        'post_detail.html',
+        {
+            'post': post
+        }
+    )
+
 
 def sobre(request):
     return render(request, 'sobre.html')
