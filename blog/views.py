@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from django.core.paginator import Paginator
+
 from .models import Post
 
 
@@ -38,6 +40,15 @@ def posts(request):
         posts = posts.filter(
             categoria__nome=categoria
         )
+
+    paginator = Paginator(
+        posts,
+        3
+    )
+
+    page = request.GET.get('page')
+
+    posts = paginator.get_page(page)
 
     return render(
         request,

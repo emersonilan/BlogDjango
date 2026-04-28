@@ -10,17 +10,17 @@
 
     <form class="search-form">
 
-    <input
-        type="text"
-        name="busca"
-        placeholder="Pesquisar posts..."
-    >
+        <input
+            type="text"
+            name="busca"
+            placeholder="Pesquisar posts..."
+        >
 
-    <button type="submit">
-        Buscar
-    </button>
+        <button type="submit">
+            Buscar
+        </button>
 
-</form>
+    </form>
 
     <div class="posts-grid">
 
@@ -36,12 +36,13 @@
                 {{ post.data_criacao|date:"d/m/Y" }}
             </p>
 
-             <a
-               class="post-category"
-               href="/posts/?categoria={{ post.categoria.nome }}"
-    >
+            <a
+                class="post-category"
+                href="/posts/?categoria={{ post.categoria.nome }}"
+            >
                 {{ post.categoria.nome }}
             </a>
+
             <p>
                 {{ post.conteudo|truncatewords:20 }}
             </p>
@@ -53,6 +54,39 @@
         </div>
 
         {% endfor %}
+
+    </div>
+
+    <div class="pagination">
+
+        {% if posts.has_previous %}
+
+            <a href="?page=1">
+                Primeira
+            </a>
+
+            <a href="?page={{ posts.previous_page_number }}">
+                Anterior
+            </a>
+
+        {% endif %}
+
+        <span>
+            Página {{ posts.number }}
+            de {{ posts.paginator.num_pages }}
+        </span>
+
+        {% if posts.has_next %}
+
+            <a href="?page={{ posts.next_page_number }}">
+                Próxima
+            </a>
+
+            <a href="?page={{ posts.paginator.num_pages }}">
+                Última
+            </a>
+
+        {% endif %}
 
     </div>
 
