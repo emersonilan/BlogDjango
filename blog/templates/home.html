@@ -24,54 +24,25 @@
 
         <div class="posts-grid">
 
-            <div class="post-card">
-
-                <h3>
-                    Meu primeiro projeto Django
-                </h3>
-
-                <p>
-                    Aprendendo estrutura de projetos,
-                    templates e views.
-                </p>
-
-                <a href="">
-                    Ler mais
-                </a>
-
-            </div>
+            {% for post in posts %}
 
             <div class="post-card">
 
                 <h3>
-                    Como funciona o Django
+                    {{ post.titulo }}
                 </h3>
 
                 <p>
-                    Entendendo URLs, apps e arquitetura.
+                    {{ post.conteudo|truncatewords:20 }}
                 </p>
 
                 <a href="">
-                    Ler mais
+                 Ler mais
                 </a>
 
             </div>
 
-            <div class="post-card">
-
-                <h3>
-                    Minha evolução na programação
-                </h3>
-
-                <p>
-                    Compartilhando meus estudos e evolução.
-                </p>
-
-                <a href="">
-                    Ler mais
-                </a>
-
-            </div>
+            {% endfor %}
 
         </div>
 

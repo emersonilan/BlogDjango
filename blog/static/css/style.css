@@ -114,3 +114,16 @@ footer {
     color: #38bdf8;
     text-decoration: none;
 }
+
+.post-card a {
+
+    display: inline-block;
+
+    margin-top: 10px;
+
+    color: #38bdf8;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
