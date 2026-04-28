@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from django.core.paginator import Paginator
 
@@ -8,8 +8,8 @@ from .models import Post
 def home(request):
 
     posts = Post.objects.order_by(
-    '-data_criacao'
-)[:3]
+        '-data_criacao'
+    )[:3]
 
     return render(
         request,
@@ -19,15 +19,42 @@ def home(request):
         }
     )
 
+
+def sobre(request):
+
+    return render(
+        request,
+        'sobre.html'
+    )
+
+
 def posts(request):
 
     busca = request.GET.get('busca')
 
     categoria = request.GET.get('categoria')
 
-    posts = Post.objects.order_by(
-        '-data_criacao'
+    ordenacao = request.GET.get(
+        'ordenacao'
     )
+
+    if ordenacao == 'antigos':
+
+        posts = Post.objects.order_by(
+            'data_criacao'
+        )
+
+    elif ordenacao == 'az':
+
+        posts = Post.objects.order_by(
+            'titulo'
+        )
+
+    else:
+
+        posts = Post.objects.order_by(
+            '-data_criacao'
+        )
 
     if busca:
 
@@ -58,9 +85,13 @@ def posts(request):
         }
     )
 
+
 def post_detail(request, slug):
 
-    post = Post.objects.get(slug=slug)
+    post = get_object_or_404(
+        Post,
+        slug=slug
+    )
 
     return render(
         request,
@@ -69,7 +100,3 @@ def post_detail(request, slug):
             'post': post
         }
     )
-
-
-def sobre(request):
-    return render(request, 'sobre.html')
