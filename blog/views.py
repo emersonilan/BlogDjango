@@ -19,9 +19,17 @@ def home(request):
 
 def posts(request):
 
+    busca = request.GET.get('busca')
+
     posts = Post.objects.order_by(
-    '-data_criacao'
-)
+        '-data_criacao'
+    )
+
+    if busca:
+
+        posts = posts.filter(
+            titulo__icontains=busca
+        )
 
     return render(
         request,
