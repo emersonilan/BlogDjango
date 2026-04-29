@@ -10,6 +10,10 @@
             {{ post.titulo }}
         </h1>
 
+        <a href="{% url 'like_post' post.slug %}">
+    ❤️ Curtir
+</a>
+
         <p class="post-date">
             {{ post.data_criacao|date:"d/m/Y H:i" }}
         </p>

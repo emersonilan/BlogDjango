@@ -105,3 +105,15 @@ def post_detail(request, slug):
             'comments': comments
         }
     )
+
+from django.shortcuts import redirect
+
+def like_post(request, slug):
+
+    post = get_object_or_404(Post, slug=slug)
+
+    post.likes += 1
+
+    post.save()
+
+    return redirect('post_detail', slug=post.slug)
