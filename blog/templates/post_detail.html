@@ -29,62 +29,64 @@
 
     </div>
 
-    <hr>
+    <div class="comments-section">
 
-    <h3>
-        Comentários
-    </h3>
+        <h3>
+            Comentários
+        </h3>
 
-    <form method="POST">
+        <form method="POST">
 
-        {% csrf_token %}
+            {% csrf_token %}
 
-        <input
-            type="text"
-            name="nome"
-            placeholder="Seu nome"
-            required
-        >
+            <input
+                type="text"
+                name="nome"
+                placeholder="Seu nome"
+                required
+            >
 
-        <textarea
-            name="texto"
-            placeholder="Seu comentário"
-            required
-        ></textarea>
+            <textarea
+                name="texto"
+                placeholder="Seu comentário"
+                required
+            ></textarea>
 
-        <button type="submit">
-            Enviar
-        </button>
+            <button type="submit">
+                Enviar
+            </button>
 
-    </form>
+        </form>
 
-    <div class="comments">
+        <div class="comments">
 
-        {% for comment in comments %}
+            {% for comment in comments %}
 
-            <div class="comment">
+                <div class="comment">
 
-                <strong>
-                    {{ comment.nome }}
-                </strong>
+                    <strong>
+                        {{ comment.nome }}
+                    </strong>
+
+                    <p>
+                        {{ comment.texto }}
+                    </p>
+
+                    <small>
+                        {{ comment.data_criacao|date:"d/m/Y H:i" }}
+                    </small>
+
+                </div>
+
+            {% empty %}
 
                 <p>
-                    {{ comment.texto }}
+                    Nenhum comentário ainda.
                 </p>
 
-                <small>
-                    {{ comment.data_criacao|date:"d/m/Y H:i" }}
-                </small>
+            {% endfor %}
 
-            </div>
-
-        {% empty %}
-
-            <p>
-                Nenhum comentário ainda.
-            </p>
-
-        {% endfor %}
+        </div>
 
     </div>
 

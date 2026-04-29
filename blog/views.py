@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 
 from django.core.paginator import Paginator
 
@@ -7,9 +7,7 @@ from .models import Post, Comment
 
 def home(request):
 
-    posts = Post.objects.order_by(
-        '-data_criacao'
-    )[:3]
+    posts = Post.objects.order_by('-data_criacao')[:3]
 
     return render(
         request,
@@ -34,27 +32,21 @@ def posts(request):
 
     categoria = request.GET.get('categoria')
 
-    ordenacao = request.GET.get(
-        'ordenacao'
-    )
+    ordenacao = request.GET.get('ordenacao')
+
+    posts = Post.objects.all()
 
     if ordenacao == 'antigos':
 
-        posts = Post.objects.order_by(
-            'data_criacao'
-        )
+        posts = posts.order_by('data_criacao')
 
     elif ordenacao == 'az':
 
-        posts = Post.objects.order_by(
-            'titulo'
-        )
+        posts = posts.order_by('titulo')
 
     else:
 
-        posts = Post.objects.order_by(
-            '-data_criacao'
-        )
+        posts = posts.order_by('-data_criacao')
 
     if busca:
 
@@ -68,10 +60,7 @@ def posts(request):
             categoria__nome=categoria
         )
 
-    paginator = Paginator(
-        posts,
-        3
-    )
+    paginator = Paginator(posts, 3)
 
     page = request.GET.get('page')
 
@@ -88,26 +77,25 @@ def posts(request):
 
 def post_detail(request, slug):
 
-    post = get_object_or_404(
-        Post,
-        slug=slug
-    )
+    post = get_object_or_404(Post, slug=slug)
 
     if request.method == 'POST':
 
-        nome = request.POST.get('nome')
+        nome = request.POST.get('nome', '').strip()
+        texto = request.POST.get('texto', '').strip()
 
-        texto = request.POST.get('texto')
+        if nome and texto:
 
-        Comment.objects.create(
-            post=post,
-            nome=nome,
-            texto=texto
-        )
+            Comment.objects.create(
+                post=post,
+                nome=nome,
+                texto=texto
+            )
 
-    comments = post.comments.order_by(
-        '-data_criacao'
-    )
+        # 🔴 ISSO EVITA DUPLICAÇÃO NO F5
+        return redirect('post_detail', slug=post.slug)
+
+    comments = post.comments.order_by('-data_criacao')
 
     return render(
         request,
