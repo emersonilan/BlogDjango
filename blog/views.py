@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 
 from django.core.paginator import Paginator
 
-from .models import Post
+from .models import Post, Comment
 
 
 def home(request):
@@ -93,10 +93,27 @@ def post_detail(request, slug):
         slug=slug
     )
 
+    if request.method == 'POST':
+
+        nome = request.POST.get('nome')
+
+        texto = request.POST.get('texto')
+
+        Comment.objects.create(
+            post=post,
+            nome=nome,
+            texto=texto
+        )
+
+    comments = post.comments.order_by(
+        '-data_criacao'
+    )
+
     return render(
         request,
         'post_detail.html',
         {
-            'post': post
+            'post': post,
+            'comments': comments
         }
     )

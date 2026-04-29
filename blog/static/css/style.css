@@ -437,3 +437,51 @@ footer {
 
     align-items: center;
 }
+
+form input,
+form textarea {
+
+    display: block;
+
+    width: 100%;
+
+    margin-bottom: 10px;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    border: none;
+}
+
+form textarea {
+
+    height: 100px;
+}
+
+form button {
+
+    padding: 10px 20px;
+
+    background-color: #38bdf8;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.comments {
+
+    margin-top: 30px;
+}
+
+.comment {
+
+    padding: 15px;
+
+    border-bottom: 1px solid #334155;
+}

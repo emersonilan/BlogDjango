@@ -4,17 +4,89 @@
 
 <div class="container">
 
-    <article class="post-detail">
+    <div class="post-detail">
 
-        <h2>
+        <h1>
             {{ post.titulo }}
-        </h2>
+        </h1>
 
-        <p>
-            {{ post.conteudo }}
+        <p class="post-date">
+            {{ post.data_criacao|date:"d/m/Y H:i" }}
         </p>
 
-    </article>
+        <a
+            class="post-category"
+            href="/posts/?categoria={{ post.categoria.nome }}"
+        >
+            {{ post.categoria.nome }}
+        </a>
+
+        <div class="post-content">
+
+            {{ post.conteudo }}
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <h3>
+        Comentários
+    </h3>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input
+            type="text"
+            name="nome"
+            placeholder="Seu nome"
+            required
+        >
+
+        <textarea
+            name="texto"
+            placeholder="Seu comentário"
+            required
+        ></textarea>
+
+        <button type="submit">
+            Enviar
+        </button>
+
+    </form>
+
+    <div class="comments">
+
+        {% for comment in comments %}
+
+            <div class="comment">
+
+                <strong>
+                    {{ comment.nome }}
+                </strong>
+
+                <p>
+                    {{ comment.texto }}
+                </p>
+
+                <small>
+                    {{ comment.data_criacao|date:"d/m/Y H:i" }}
+                </small>
+
+            </div>
+
+        {% empty %}
+
+            <p>
+                Nenhum comentário ainda.
+            </p>
+
+        {% endfor %}
+
+    </div>
 
 </div>
 
