@@ -42,24 +42,38 @@ p {
 }
 
 .nav-container {
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 }
 
 .nav-links {
+
     display: flex;
+
+    align-items: center;
+
     list-style: none;
-    gap: 20px;
+
+    gap: 25px;
 }
 
 .nav-links a {
+
     text-decoration: none;
+
     color: white;
+
+    font-weight: bold;
+
     transition: 0.3s;
 }
 
 .nav-links a:hover {
+
     color: #38bdf8;
 }
 
@@ -319,4 +333,107 @@ footer {
     text-decoration: none;
 
     font-weight: bold;
+}
+
+#theme-toggle {
+
+    background: none;
+
+    border: none;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    color: white;
+}  
+
+.light-mode {
+
+    background-color: #f1f5f9;
+
+    color: #0f172a;
+}
+
+.light-mode header {
+
+    background-color: white;
+
+    border-bottom: 1px solid #cbd5e1;
+}
+
+.light-mode .logo {
+
+    color: #0f172a;
+}
+
+.light-mode .nav-links a {
+
+    color: #0f172a;
+}
+
+.light-mode .nav-links a:hover {
+
+    color: #38bdf8;
+}
+
+.light-mode #theme-toggle {
+
+    color: #0f172a;
+}
+
+.light-mode .post-card,
+.light-mode .about-card {
+
+    background-color: white;
+}
+
+.light-mode h1,
+.light-mode h2,
+.light-mode h3,
+.light-mode p,
+.light-mode span {
+
+    color: #0f172a;
+}
+
+.light-mode .search-form input,
+.light-mode .order-form select {
+
+    background-color: white;
+
+    color: #0f172a;
+
+    border: 1px solid #cbd5e1;
+}
+
+.light-mode .pagination span {
+
+    color: #0f172a;
+}
+
+.logo {
+
+    color: white;
+
+    font-size: 28px;
+
+    font-weight: bold;
+}
+
+#theme-toggle {
+
+    background: none;
+
+    border: none;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
 }

@@ -20,8 +20,8 @@
         <div class="container nav-container">
 
             <h1 class="logo">
-                Meu Blog
-            </h1>
+    Meu Blog
+</h1>
 
             <nav>
 
@@ -44,6 +44,10 @@
             Sobre
         </a>
     </li>
+
+    <button id="theme-toggle">
+    🌙
+</button>
 
 </ul>
 
@@ -72,5 +76,59 @@
 
 </footer>
 
+<script>
+
+    const button =
+        document.getElementById(
+            'theme-toggle'
+        )
+
+    const body = document.body
+
+    if (
+        localStorage.getItem('theme')
+        === 'light'
+    ) {
+
+        body.classList.add('light-mode')
+
+        button.innerText = '☀️'
+    }
+
+    button.addEventListener(
+        'click',
+        () => {
+
+            body.classList.toggle(
+                'light-mode'
+            )
+
+            if (
+                body.classList.contains(
+                    'light-mode'
+                )
+            ) {
+
+                localStorage.setItem(
+                    'theme',
+                    'light'
+                )
+
+                button.innerText = '☀️'
+
+            } else {
+
+                localStorage.setItem(
+                    'theme',
+                    'dark'
+                )
+
+                button.innerText = '🌙'
+            }
+
+        }
+    )
+
+</script> 
 </body>
 </html>
