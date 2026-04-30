@@ -146,22 +146,19 @@ def like_post(request, slug):
         slug=slug
     )
 
-    liked_posts = request.session.get(
-        'liked_posts',
-        []
-    )
+    if request.user.is_authenticated:
 
-    if post.id not in liked_posts:
+        if request.user in post.likes.all():
 
-        post.likes += 1
+            post.likes.remove(
+                request.user
+            )
 
-        post.save()
+        else:
 
-        liked_posts.append(post.id)
-
-        request.session[
-            'liked_posts'
-        ] = liked_posts
+            post.likes.add(
+                request.user
+            )
 
     return redirect(
         'post_detail',

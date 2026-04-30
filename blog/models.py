@@ -37,20 +37,25 @@ class Post(models.Model):
         blank=True
     )
 
-    likes = models.PositiveIntegerField(
-        default=0
+    likes = models.ManyToManyField(
+        User,
+        related_name='liked_posts',
+        blank=True
     )
 
     imagem = models.ImageField(
-    upload_to='posts/',
-    null=True,
-    blank=True
-)
+        upload_to='posts/',
+        null=True,
+        blank=True
+    )
+
+    def total_likes(self):
+
+        return self.likes.count()
 
     def __str__(self):
 
         return self.titulo
-
 
 class Comment(models.Model):
 

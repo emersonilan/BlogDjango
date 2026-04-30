@@ -17,12 +17,32 @@
         <div class="likes">
 
             <p>
-                ❤️ {{ post.likes }} curtidas
+                ❤️ {{ post.total_likes }} curtidas
             </p>
 
+            {% if user.is_authenticated %}
+
             <a href="{% url 'like_post' post.slug %}">
+
+                {% if user in post.likes.all %}
+
+                Descurtir
+
+                {% else %}
+
                 Curtir
+
+                {% endif %}
+
             </a>
+
+            {% else %}
+
+            <p>
+                Faça login para curtir.
+            </p>
+
+            {% endif %}
 
         </div>
 
