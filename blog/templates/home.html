@@ -1,49 +1,64 @@
-{% load static %}
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
+{% block content %}
 
-<head>
+<section class="hero">
 
-    <meta charset="UTF-8">
+    <h2 class="section-title">
+        Bem-vindo ao Meu Blog
+    </h2>
 
-    <title>Meu Blog</title>
+    <p class="hero-text">
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        Aqui compartilho meus estudos,
+        projetos e evolução no mundo da programação
+        usando Django e Python.
 
-</head>
+    </p>
 
-<body>
+</section>
 
-    <header>
+<section>
 
-        <div class="container">
+    <h2 class="section-title">
+        Posts Recentes
+    </h2>
 
-            <h1 class="logo">
-                Meu Blog
-            </h1>
+    <div class="posts-grid">
 
-        </div>
+        {% for post in posts %}
 
-    </header>
+            <div class="post-card">
 
-    <main>
+                <h3>
+                    {{ post.titulo }}
+                </h3>
 
-        <div class="container">
+                <p class="post-date">
+                    {{ post.data_criacao|date:"d/m/Y" }}
+                </p>
 
-            <h2>
-                Bem-vindo ao meu blog
-            </h2>
+                <a
+                    class="post-category"
+                    href="/posts/?categoria={{ post.categoria.nome }}"
+                >
+                    {{ post.categoria.nome }}
+                </a>
 
-            <p>
-                Estou aprendendo Django e criando meu primeiro blog pessoal.
-                Aqui vou compartilhar meus estudos, projetos e evolução
-                na programação.
-            </p>
+                <p>
+                    {{ post.conteudo|truncatewords:20 }}
+                </p>
 
-        </div>
+                <a href="/post/{{ post.slug }}/">
+                    Ler mais
+                </a>
 
-    </main>
+            </div>
 
-</body>
-</html>
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

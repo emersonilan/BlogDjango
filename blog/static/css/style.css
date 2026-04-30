@@ -8,6 +8,7 @@ body {
     background-color: #0f172a;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
+    transition: 0.3s;
 }
 
 .container {
@@ -22,21 +23,273 @@ header {
     border-bottom: 1px solid #1e293b;
 }
 
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .logo {
     color: #38bdf8;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #38bdf8;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
 }
 
 main {
     padding: 60px 0;
 }
 
-h2 {
-    margin-bottom: 20px;
+.section-title {
+    margin-bottom: 30px;
     font-size: 40px;
 }
 
-p {
-    line-height: 1.6;
-    max-width: 700px;
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(300px, 1fr)
+    );
+    gap: 20px;
+}
+
+.post-card {
+    background-color: #1e293b;
+    padding: 20px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+}
+
+.post-card h3 {
+    margin-bottom: 10px;
+}
+
+.post-card p {
+    margin-bottom: 15px;
     color: #cbd5e1;
+}
+
+.post-card a {
+    text-decoration: none;
+    color: #38bdf8;
+}
+
+.post-date {
+    font-size: 14px;
+    color: #94a3b8;
+    margin-bottom: 10px;
+}
+
+.post-category {
+    display: inline-block;
+    background-color: #38bdf8;
+    color: #0f172a;
+    padding: 5px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.search-form {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.search-form input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #38bdf8;
+    cursor: pointer;
+}
+
+.order-form {
+    margin-bottom: 30px;
+}
+
+.order-form select {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+.pagination {
+    margin-top: 40px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.pagination a {
+    text-decoration: none;
+    background-color: #38bdf8;
+    color: #0f172a;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.post-detail h1 {
+    margin-bottom: 15px;
+}
+
+.post-content {
+    margin-top: 30px;
+    line-height: 1.8;
+    margin-bottom: 50px;
+}
+
+.comments-section {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 2px solid #334155;
+}
+
+.comments-section h3 {
+    margin-bottom: 20px;
+}
+
+.comments-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.comments-section input,
+.comments-section textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+}
+
+.comments-section textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.comments-section button {
+    width: fit-content;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #38bdf8;
+    cursor: pointer;
+}
+
+.comment {
+    background-color: #1e293b;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.comment strong {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.comment small {
+    color: #94a3b8;
+}
+
+.likes {
+    margin: 20px 0;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.likes a {
+    background-color: #ef4444;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.about-container {
+    display: flex;
+    justify-content: center;
+}
+
+.about-card {
+    background-color: #1e293b;
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 700px;
+    text-align: center;
+}
+
+.about-card h1 {
+    margin-bottom: 20px;
+}
+
+.about-text {
+    line-height: 1.8;
+    color: #cbd5e1;
+}
+
+.light-mode {
+    background-color: #f1f5f9;
+    color: #0f172a;
+}
+
+.light-mode header {
+    background-color: white;
+}
+
+.light-mode .post-card,
+.light-mode .comment,
+.light-mode .about-card {
+    background-color: white;
+}
+
+.light-mode .nav-links a,
+.light-mode .logo,
+.light-mode p,
+.light-mode h1,
+.light-mode h2,
+.light-mode h3,
+.light-mode strong {
+    color: #0f172a;
+}
+
+.light-mode #theme-toggle {
+    color: #0f172a;
 }

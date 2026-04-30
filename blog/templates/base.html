@@ -1,0 +1,136 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Meu Blog
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="container nav-container">
+
+        <h1 class="logo">
+            Meu Blog
+        </h1>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="/">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="/posts/">
+                    Posts
+                </a>
+            </li>
+
+            <li>
+                <a href="/sobre/">
+                    Sobre
+                </a>
+            </li>
+
+            <li>
+
+                <button id="theme-toggle">
+                    🌙
+                </button>
+
+            </li>
+
+        </ul>
+
+    </div>
+
+</header>
+
+<main class="container">
+
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+<script>
+
+const button =
+    document.getElementById(
+        'theme-toggle'
+    )
+
+const body = document.body
+
+if (
+    localStorage.getItem('theme')
+    === 'light'
+) {
+
+    body.classList.add(
+        'light-mode'
+    )
+
+    button.innerText = '☀️'
+}
+
+button.addEventListener(
+    'click',
+    () => {
+
+        body.classList.toggle(
+            'light-mode'
+        )
+
+        if (
+            body.classList.contains(
+                'light-mode'
+            )
+        ) {
+
+            localStorage.setItem(
+                'theme',
+                'light'
+            )
+
+            button.innerText = '☀️'
+
+        } else {
+
+            localStorage.setItem(
+                'theme',
+                'dark'
+            )
+
+            button.innerText = '🌙'
+        }
+    }
+)
+
+</script>
+
+</body>
+
+</html>

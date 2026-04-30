@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="post-detail">
+
+        <h1>
+            {{ post.titulo }}
+        </h1>
+
+        <p class="post-date">
+            {{ post.data_criacao|date:"d/m/Y H:i" }}
+        </p>
+
+        <div class="likes">
+
+            <p>
+                ❤️ {{ post.likes }} curtidas
+            </p>
+
+            <a href="{% url 'like_post' post.slug %}">
+                Curtir
+            </a>
+
+        </div>
+
+        <a
+            class="post-category"
+            href="/posts/?categoria={{ post.categoria.nome }}"
+        >
+            {{ post.categoria.nome }}
+        </a>
+
+        <div class="post-content">
+
+            {{ post.conteudo }}
+
+        </div>
+
+    </div>
+
+    <div class="comments-section">
+
+        <h3>
+            Comentários
+        </h3>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <input
+                type="text"
+                name="nome"
+                placeholder="Seu nome"
+                required
+            >
+
+            <textarea
+                name="texto"
+                placeholder="Seu comentário"
+                required
+            ></textarea>
+
+            <button type="submit">
+                Enviar
+            </button>
+
+        </form>
+
+        <div class="comments">
+
+            {% for comment in comments %}
+
+                <div class="comment">
+
+                    <strong>
+                        {{ comment.nome }}
+                    </strong>
+
+                    <p>
+                        {{ comment.texto }}
+                    </p>
+
+                    <small>
+                        {{ comment.data_criacao|date:"d/m/Y H:i" }}
+                    </small>
+
+                </div>
+
+            {% empty %}
+
+                <p>
+                    Nenhum comentário ainda.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2 class="section-title">
+        Todos os Posts
+    </h2>
+
+    <form class="search-form">
+
+        <input
+            type="text"
+            name="busca"
+            placeholder="Pesquisar posts..."
+        >
+
+        <button type="submit">
+            Buscar
+        </button>
+
+    </form>
+
+    <form class="order-form">
+
+        <select
+            name="ordenacao"
+            onchange="this.form.submit()"
+        >
+
+            <option value="">
+                Mais recentes
+            </option>
+
+            <option value="antigos">
+                Mais antigos
+            </option>
+
+            <option value="az">
+                A-Z
+            </option>
+
+        </select>
+
+    </form>
+
+    <div class="posts-grid">
+
+        {% for post in posts %}
+
+        <div class="post-card">
+
+            <h3>
+                {{ post.titulo }}
+            </h3>
+
+            <p class="post-date">
+                {{ post.data_criacao|date:"d/m/Y" }}
+            </p>
+
+            <a
+                class="post-category"
+                href="/posts/?categoria={{ post.categoria.nome }}"
+            >
+                {{ post.categoria.nome }}
+            </a>
+
+            <p>
+                {{ post.conteudo|truncatewords:20 }}
+            </p>
+
+            <a href="/post/{{ post.slug }}/">
+                Ler mais
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="pagination">
+
+        {% if posts.has_previous %}
+
+            <a href="?page=1">
+                Primeira
+            </a>
+
+            <a href="?page={{ posts.previous_page_number }}">
+                Anterior
+            </a>
+
+        {% endif %}
+
+        <span>
+            Página {{ posts.number }}
+            de {{ posts.paginator.num_pages }}
+        </span>
+
+        {% if posts.has_next %}
+
+            <a href="?page={{ posts.next_page_number }}">
+                Próxima
+            </a>
+
+            <a href="?page={{ posts.paginator.num_pages }}">
+                Última
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
