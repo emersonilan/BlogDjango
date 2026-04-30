@@ -26,12 +26,15 @@
 
         </div>
 
-        <a
-            class="post-category"
-            href="/posts/?categoria={{ post.categoria.nome }}"
-        >
+        <a class="post-category" href="/posts/?categoria={{ post.categoria.nome }}">
             {{ post.categoria.nome }}
         </a>
+
+        {% if post.imagem %}
+
+        <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" class="post-detail-image">
+
+        {% endif %}
 
         <div class="post-content">
 
@@ -53,11 +56,7 @@
 
             {% csrf_token %}
 
-            <textarea
-                name="texto"
-                placeholder="Seu comentário"
-                required
-            ></textarea>
+            <textarea name="texto" placeholder="Seu comentário" required></textarea>
 
             <button type="submit">
                 Enviar

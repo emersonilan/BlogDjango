@@ -10,11 +10,7 @@
 
     <form class="search-form">
 
-        <input
-            type="text"
-            name="busca"
-            placeholder="Pesquisar posts..."
-        >
+        <input type="text" name="busca" placeholder="Pesquisar posts...">
 
         <button type="submit">
             Buscar
@@ -24,10 +20,7 @@
 
     <form class="order-form">
 
-        <select
-            name="ordenacao"
-            onchange="this.form.submit()"
-        >
+        <select name="ordenacao" onchange="this.form.submit()">
 
             <option value="">
                 Mais recentes
@@ -51,6 +44,12 @@
 
         <div class="post-card">
 
+            {% if post.imagem %}
+
+            <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" class="post-image">
+
+            {% endif %}
+
             <h3>
                 {{ post.titulo }}
             </h3>
@@ -59,10 +58,7 @@
                 {{ post.data_criacao|date:"d/m/Y" }}
             </p>
 
-            <a
-                class="post-category"
-                href="/posts/?categoria={{ post.categoria.nome }}"
-            >
+            <a class="post-category" href="/posts/?categoria={{ post.categoria.nome }}">
                 {{ post.categoria.nome }}
             </a>
 
@@ -84,13 +80,13 @@
 
         {% if posts.has_previous %}
 
-            <a href="?page=1">
-                Primeira
-            </a>
+        <a href="?page=1">
+            Primeira
+        </a>
 
-            <a href="?page={{ posts.previous_page_number }}">
-                Anterior
-            </a>
+        <a href="?page={{ posts.previous_page_number }}">
+            Anterior
+        </a>
 
         {% endif %}
 
@@ -101,13 +97,13 @@
 
         {% if posts.has_next %}
 
-            <a href="?page={{ posts.next_page_number }}">
-                Próxima
-            </a>
+        <a href="?page={{ posts.next_page_number }}">
+            Próxima
+        </a>
 
-            <a href="?page={{ posts.paginator.num_pages }}">
-                Última
-            </a>
+        <a href="?page={{ posts.paginator.num_pages }}">
+            Última
+        </a>
 
         {% endif %}
 

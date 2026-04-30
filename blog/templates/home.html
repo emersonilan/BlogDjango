@@ -28,32 +28,35 @@
 
         {% for post in posts %}
 
-            <div class="post-card">
+        <div class="post-card">
 
-                <h3>
-                    {{ post.titulo }}
-                </h3>
+            {% if post.imagem %}
 
-                <p class="post-date">
-                    {{ post.data_criacao|date:"d/m/Y" }}
-                </p>
+            <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" class="post-image">
 
-                <a
-                    class="post-category"
-                    href="/posts/?categoria={{ post.categoria.nome }}"
-                >
-                    {{ post.categoria.nome }}
-                </a>
+            {% endif %}
 
-                <p>
-                    {{ post.conteudo|truncatewords:20 }}
-                </p>
+            <h3>
+                {{ post.titulo }}
+            </h3>
 
-                <a href="/post/{{ post.slug }}/">
-                    Ler mais
-                </a>
+            <p class="post-date">
+                {{ post.data_criacao|date:"d/m/Y" }}
+            </p>
 
-            </div>
+            <a class="post-category" href="/posts/?categoria={{ post.categoria.nome }}">
+                {{ post.categoria.nome }}
+            </a>
+
+            <p>
+                {{ post.conteudo|truncatewords:20 }}
+            </p>
+
+            <a href="/post/{{ post.slug }}/">
+                Ler mais
+            </a>
+
+        </div>
 
         {% endfor %}
 
