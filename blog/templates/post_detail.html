@@ -47,16 +47,11 @@
             Comentários
         </h3>
 
+        {% if user.is_authenticated %}
+
         <form method="POST">
 
             {% csrf_token %}
-
-            <input
-                type="text"
-                name="nome"
-                placeholder="Seu nome"
-                required
-            >
 
             <textarea
                 name="texto"
@@ -70,31 +65,45 @@
 
         </form>
 
+        {% else %}
+
+        <p>
+
+            Você precisa fazer
+            <a href="/usuarios/login/">
+                login
+            </a>
+            para comentar.
+
+        </p>
+
+        {% endif %}
+
         <div class="comments">
 
             {% for comment in comments %}
 
-                <div class="comment">
+            <div class="comment">
 
-                    <strong>
-                        {{ comment.nome }}
-                    </strong>
+                <strong>
+                    {{ comment.usuario.username }}
+                </strong>
 
-                    <p>
-                        {{ comment.texto }}
-                    </p>
+                <p>
+                    {{ comment.texto }}
+                </p>
 
-                    <small>
-                        {{ comment.data_criacao|date:"d/m/Y H:i" }}
-                    </small>
+                <small>
+                    {{ comment.data_criacao|date:"d/m/Y H:i" }}
+                </small>
 
-                </div>
+            </div>
 
             {% empty %}
 
-                <p>
-                    Nenhum comentário ainda.
-                </p>
+            <p>
+                Nenhum comentário ainda.
+            </p>
 
             {% endfor %}
 

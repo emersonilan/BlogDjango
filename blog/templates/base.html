@@ -36,33 +36,61 @@
 
         <ul class="nav-links">
 
-            <li>
-                <a href="/">
-                    Home
-                </a>
-            </li>
+    <li>
+        <a href="/">
+            Home
+        </a>
+    </li>
 
-            <li>
-                <a href="/posts/">
-                    Posts
-                </a>
-            </li>
+    <li>
+        <a href="/posts/">
+            Posts
+        </a>
+    </li>
 
-            <li>
-                <a href="/sobre/">
-                    Sobre
-                </a>
-            </li>
+    <li>
+        <a href="/sobre/">
+            Sobre
+        </a>
+    </li>
 
-            <li>
+    {% if user.is_authenticated %}
 
-                <button id="theme-toggle">
-                    🌙
-                </button>
+        <li>
+            Olá, {{ user.username }}
+        </li>
 
-            </li>
+        <li>
+            <a href="/usuarios/logout/">
+                Sair
+            </a>
+        </li>
 
-        </ul>
+    {% else %}
+
+        <li>
+            <a href="/usuarios/login/">
+                Login
+            </a>
+        </li>
+
+        <li>
+            <a href="/usuarios/cadastro/">
+                Cadastro
+            </a>
+        </li>
+
+    {% endif %}
+
+    <li>
+
+        <button id="theme-toggle">
+            🌙
+        </button>
+
+    </li>
+
+</ul>
 
     </div>
 

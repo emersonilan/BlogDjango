@@ -104,21 +104,19 @@ def post_detail(request, slug):
 
     if request.method == 'POST':
 
-        nome = request.POST.get(
-            'nome',
-            ''
-        ).strip()
-
         texto = request.POST.get(
             'texto',
             ''
         ).strip()
 
-        if nome and texto:
+        if (
+            texto and
+            request.user.is_authenticated
+        ):
 
             Comment.objects.create(
                 post=post,
-                nome=nome,
+                usuario=request.user,
                 texto=texto
             )
 
@@ -161,7 +159,9 @@ def like_post(request, slug):
 
         liked_posts.append(post.id)
 
-        request.session['liked_posts'] = liked_posts
+        request.session[
+            'liked_posts'
+        ] = liked_posts
 
     return redirect(
         'post_detail',

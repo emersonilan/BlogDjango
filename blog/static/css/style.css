@@ -226,6 +226,8 @@ main {
 }
 
 .comment small {
+    display: block;
+    margin-top: 12px;
     color: #94a3b8;
 }
 
@@ -330,4 +332,62 @@ main {
 .likes a:hover,
 .pagination a:hover {
     opacity: 0.85;
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-card {
+    background-color: #1e293b;
+    padding: 40px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-card h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.auth-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-card input {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+}
+
+.auth-card button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #38bdf8;
+    cursor: pointer;
+}
+
+.light-mode .auth-card {
+    background-color: white;
+}
+
+.comments-section > p {
+    margin-bottom: 30px;
+}
+
+.hero {
+    margin-bottom: 70px;
+}
+
+.hero-text {
+    margin-top: 20px;
+    line-height: 1.8;
+    max-width: 700px;
+    color: #cbd5e1;
 }
