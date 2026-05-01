@@ -34,4 +34,10 @@ urlpatterns = [
     views.perfil_usuario,
     name='perfil_usuario'
 ),
+
+path(
+    'editar-perfil/',
+    views.editar_perfil,
+    name='editar_perfil'
+),
 ]

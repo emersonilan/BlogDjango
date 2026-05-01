@@ -6,14 +6,23 @@
 
     <div class="perfil-header">
 
-        <img
-            src="{{ perfil.foto.url }}"
-            class="perfil-foto"
-        >
+        {% if perfil.foto %}
+
+        <img src="{{ perfil.foto.url }}" class="perfil-foto">
+
+        {% endif %}
 
         <h1>
             {{ perfil_user.username|default:request.user.username }}
         </h1>
+
+        {% if request.user == perfil.usuario %}
+
+        <a class="edit-profile-btn" href="/usuarios/editar-perfil/">
+            Editar Perfil
+        </a>
+
+        {% endif %}
 
         <p>
             {{ perfil.bio }}
@@ -34,21 +43,21 @@
 
         {% for post in posts_curtidos %}
 
-            <div class="perfil-card">
+        <div class="perfil-card">
 
-                <a href="/post/{{ post.slug }}/">
+            <a href="/post/{{ post.slug }}/">
 
-                    {{ post.titulo }}
+                {{ post.titulo }}
 
-                </a>
+            </a>
 
-            </div>
+        </div>
 
         {% empty %}
 
-            <p>
-                Nenhum post curtido.
-            </p>
+        <p>
+            Nenhum post curtido.
+        </p>
 
         {% endfor %}
 
@@ -62,23 +71,23 @@
 
         {% for comment in comentarios %}
 
-            <div class="perfil-card">
+        <div class="perfil-card">
 
-                <p>
-                    {{ comment.texto }}
-                </p>
+            <p>
+                {{ comment.texto }}
+            </p>
 
-                <small>
-                    {{ comment.data_criacao|date:"d/m/Y H:i" }}
-                </small>
+            <small>
+                {{ comment.data_criacao|date:"d/m/Y H:i" }}
+            </small>
 
-            </div>
+        </div>
 
         {% empty %}
 
-            <p>
-                Nenhum comentário.
-            </p>
+        <p>
+            Nenhum comentário.
+        </p>
 
         {% endfor %}
 

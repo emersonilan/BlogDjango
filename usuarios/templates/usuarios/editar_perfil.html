@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="perfil-container">
+
+    <div class="perfil-section">
+
+        <h2>
+            Editar Perfil
+        </h2>
+
+        <form
+            method="POST"
+            enctype="multipart/form-data"
+            class="perfil-form"
+        >
+
+            {% csrf_token %}
+
+            <h3>
+                Dados da Conta
+            </h3>
+
+            <div class="form-group">
+
+                <label>
+                    Username
+                </label>
+
+                {{ user_form.username }}
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Email
+                </label>
+
+                {{ user_form.email }}
+
+            </div>
+
+            <h3>
+                Perfil
+            </h3>
+
+            <div class="form-group">
+
+                <label>
+                    Foto de Perfil
+                </label>
+
+                <input
+                    type="file"
+                    name="foto"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Bio
+                </label>
+
+                {{ perfil_form.bio }}
+
+            </div>
+
+            <button type="submit">
+                Salvar alterações
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

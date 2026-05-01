@@ -1,3 +1,8 @@
+from .forms import (
+    PerfilForm,
+    UserForm
+)
+
 from django.shortcuts import (
     render,
     redirect
@@ -12,6 +17,8 @@ from django.contrib.auth import (
 )
 
 from .models import Perfil
+
+from .forms import PerfilForm
 
 
 def cadastro(request):
@@ -139,5 +146,54 @@ def perfil_usuario(
             'comentarios': comentarios,
             'posts_curtidos': posts_curtidos,
             'perfil_user': user
+        }
+    )
+
+def editar_perfil(request):
+
+    perfil = request.user.perfil
+
+    if request.method == 'POST':
+
+        user_form = UserForm(
+            request.POST,
+            instance=request.user
+        )
+
+        perfil_form = PerfilForm(
+            request.POST,
+            request.FILES,
+            instance=perfil
+        )
+
+        if (
+            user_form.is_valid()
+            and perfil_form.is_valid()
+        ):
+
+            user_form.save()
+
+            perfil_form.save()
+
+            return redirect(
+                'perfil'
+            )
+
+    else:
+
+        user_form = UserForm(
+            instance=request.user
+        )
+
+        perfil_form = PerfilForm(
+            instance=perfil
+        )
+
+    return render(
+        request,
+        'usuarios/editar_perfil.html',
+        {
+            'user_form': user_form,
+            'perfil_form': perfil_form
         }
     )

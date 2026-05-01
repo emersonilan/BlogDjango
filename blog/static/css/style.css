@@ -559,3 +559,273 @@ main {
 .light-mode .perfil-header small {
     color: #0f172a;
 }
+
+.perfil-form {
+    margin-top: 30px;
+}
+
+.perfil-form p {
+    margin-bottom: 20px;
+}
+
+.perfil-form input,
+.perfil-form textarea {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    background: #0f172a;
+    color: white;
+    margin-top: 10px;
+}
+
+.perfil-form textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.perfil-form button,
+.edit-profile-btn {
+    background: #38bdf8;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.perfil-form button:hover,
+.edit-profile-btn:hover {
+    transform: translateY(-2px);
+}
+
+.light-mode .perfil-form input,
+.light-mode .perfil-form textarea {
+    background: white;
+    color: #0f172a;
+    border: 1px solid #cbd5e1;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #f8fafc;
+}
+
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: white;
+}
+
+.light-mode .form-group label {
+    color: #0f172a;
+}
+
+.light-mode .form-group input[type="file"] {
+    background: white;
+    color: #0f172a;
+    border: 1px solid #cbd5e1;
+}
+
+.light-mode .comment-user {
+    color: #0f172a;
+}
+
+.light-mode .comment-user:hover {
+    color: #2563eb;
+}
+
+.comments {
+    margin-top: 35px;
+}
+
+.comment {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 22px;
+    transition: 0.3s;
+}
+
+.comment:hover {
+    transform: translateY(-2px);
+}
+
+.comment strong,
+.comment-user {
+    display: inline-block;
+    margin-bottom: 14px;
+    font-size: 17px;
+}
+
+.comment p {
+    color: #e2e8f0;
+    margin-bottom: 18px;
+    line-height: 1.7;
+}
+
+.comment small {
+    color: #94a3b8;
+    display: block;
+    margin-top: 12px;
+}
+
+/* LIGHT MODE */
+
+.light-mode .comment {
+    background: white;
+    border: 1px solid #cbd5e1;
+}
+
+.light-mode .comment p,
+.light-mode .comment small {
+    color: #0f172a;
+}
+
+@media (max-width: 768px) {
+
+    .container {
+        width: 94%;
+    }
+
+    header {
+        padding: 18px 0;
+    }
+
+    .nav-container {
+        flex-direction: column;
+        gap: 18px;
+        text-align: center;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .logo {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    .hero {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+        line-height: 1.2;
+    }
+
+    .hero p {
+        font-size: 17px;
+        margin-top: 20px;
+    }
+
+    .posts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .post-card {
+        padding: 24px;
+    }
+
+    .post-detail {
+        padding: 25px;
+    }
+
+    .post-detail h1 {
+        font-size: 34px;
+        line-height: 1.2;
+    }
+
+    .post-content {
+        font-size: 17px;
+    }
+
+    .comments-section {
+        padding: 25px;
+    }
+
+    .comment {
+        padding: 18px;
+    }
+
+    .search-form,
+    .order-form {
+        width: 100%;
+    }
+
+    .search-form input,
+    .search-form button,
+    .order-form select {
+        width: 100%;
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .perfil-header {
+        padding: 30px 20px;
+    }
+
+    .perfil-header h1 {
+        font-size: 30px;
+    }
+
+    .perfil-section {
+        padding: 24px;
+    }
+
+    .perfil-foto {
+        width: 120px;
+        height: 120px;
+    }
+
+    .perfil-form input,
+    .perfil-form textarea,
+    .perfil-form button {
+        font-size: 16px;
+    }
+
+    .likes {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .likes a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .comment-user {
+        font-size: 16px;
+    }
+}
