@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="perfil-container">
+
+    <div class="perfil-header">
+
+        <img
+            src="{{ perfil.foto.url }}"
+            class="perfil-foto"
+        >
+
+        <h1>
+            {{ perfil_user.username|default:request.user.username }}
+        </h1>
+
+        <p>
+            {{ perfil.bio }}
+        </p>
+
+        <small>
+            Entrou em
+            {{ request.user.date_joined|date:"d/m/Y" }}
+        </small>
+
+    </div>
+
+    <div class="perfil-section">
+
+        <h2>
+            Posts Curtidos
+        </h2>
+
+        {% for post in posts_curtidos %}
+
+            <div class="perfil-card">
+
+                <a href="/post/{{ post.slug }}/">
+
+                    {{ post.titulo }}
+
+                </a>
+
+            </div>
+
+        {% empty %}
+
+            <p>
+                Nenhum post curtido.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="perfil-section">
+
+        <h2>
+            Seus Comentários
+        </h2>
+
+        {% for comment in comentarios %}
+
+            <div class="perfil-card">
+
+                <p>
+                    {{ comment.texto }}
+                </p>
+
+                <small>
+                    {{ comment.data_criacao|date:"d/m/Y H:i" }}
+                </small>
+
+            </div>
+
+        {% empty %}
+
+            <p>
+                Nenhum comentário.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

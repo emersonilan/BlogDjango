@@ -6,6 +6,7 @@ from .models import (
     Comment
 )
 
+
 admin.site.register(Post)
 
 admin.site.register(Categoria)

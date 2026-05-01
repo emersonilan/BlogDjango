@@ -2,6 +2,7 @@ from django.urls import path
 
 from . import views
 
+
 urlpatterns = [
 
     path(
@@ -12,7 +13,7 @@ urlpatterns = [
 
     path(
         'cadastro/',
-        views.cadastro_view,
+        views.cadastro,
         name='cadastro'
     ),
 
@@ -21,4 +22,16 @@ urlpatterns = [
         views.logout_view,
         name='logout'
     ),
+
+    path(
+        'perfil/',
+        views.perfil,
+        name='perfil'
+    ),
+
+    path(
+    'perfil/<str:username>/',
+    views.perfil_usuario,
+    name='perfil_usuario'
+),
 ]

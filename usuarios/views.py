@@ -11,8 +11,10 @@ from django.contrib.auth import (
     logout
 )
 
+from .models import Perfil
 
-def cadastro_view(request):
+
+def cadastro(request):
 
     if request.method == 'POST':
 
@@ -28,26 +30,15 @@ def cadastro_view(request):
             'password'
         )
 
-        if User.objects.filter(
-            username=username
-        ).exists():
-
-            return render(
-                request,
-                'usuarios/cadastro.html',
-                {
-                    'erro':
-                    'Usuário já existe'
-                }
-            )
-
         User.objects.create_user(
             username=username,
             email=email,
             password=password
         )
 
-        return redirect('login')
+        return redirect(
+            'login'
+        )
 
     return render(
         request,
@@ -80,16 +71,9 @@ def login_view(request):
                 user
             )
 
-            return redirect('/')
-
-        return render(
-            request,
-            'usuarios/login.html',
-            {
-                'erro':
-                'Usuário ou senha inválidos'
-            }
-        )
+            return redirect(
+                'home'
+            )
 
     return render(
         request,
@@ -101,4 +85,59 @@ def logout_view(request):
 
     logout(request)
 
-    return redirect('/')
+    return redirect(
+        'home'
+    )
+
+
+def perfil(request):
+
+    perfil = request.user.perfil
+
+    comentarios = (
+        request.user.comment_set.all()
+    )
+
+    posts_curtidos = (
+        request.user.liked_posts.all()
+    )
+
+    return render(
+        request,
+        'usuarios/perfil.html',
+        {
+            'perfil': perfil,
+            'comentarios': comentarios,
+            'posts_curtidos': posts_curtidos
+        }
+    )
+
+def perfil_usuario(
+    request,
+    username
+):
+
+    user = User.objects.get(
+        username=username
+    )
+
+    perfil = user.perfil
+
+    comentarios = (
+        user.comment_set.all()
+    )
+
+    posts_curtidos = (
+        user.liked_posts.all()
+    )
+
+    return render(
+        request,
+        'usuarios/perfil.html',
+        {
+            'perfil': perfil,
+            'comentarios': comentarios,
+            'posts_curtidos': posts_curtidos,
+            'perfil_user': user
+        }
+    )

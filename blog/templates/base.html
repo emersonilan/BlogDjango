@@ -31,66 +31,70 @@
     <div class="container nav-container">
 
         <h1 class="logo">
-            Meu Blog
+            <a href="/">
+                Meu Blog
+            </a>
         </h1>
 
         <ul class="nav-links">
 
-    <li>
-        <a href="/">
-            Home
-        </a>
-    </li>
+            <li>
+                <a href="/">
+                    Home
+                </a>
+            </li>
 
-    <li>
-        <a href="/posts/">
-            Posts
-        </a>
-    </li>
+            <li>
+                <a href="/posts/">
+                    Posts
+                </a>
+            </li>
 
-    <li>
-        <a href="/sobre/">
-            Sobre
-        </a>
-    </li>
+            <li>
+                <a href="/sobre/">
+                    Sobre
+                </a>
+            </li>
 
-    {% if user.is_authenticated %}
+            {% if user.is_authenticated %}
 
-        <li>
-            Olá, {{ user.username }}
-        </li>
+                <li>
+                    <a href="/usuarios/perfil/">
+                        Perfil
+                    </a>
+                </li>
 
-        <li>
-            <a href="/usuarios/logout/">
-                Sair
-            </a>
-        </li>
+                <li>
+                    <a href="/usuarios/logout/">
+                        Sair
+                    </a>
+                </li>
 
-    {% else %}
+            {% else %}
 
-        <li>
-            <a href="/usuarios/login/">
-                Login
-            </a>
-        </li>
+                <li>
+                    <a href="/usuarios/login/">
+                        Login
+                    </a>
+                </li>
 
-        <li>
-            <a href="/usuarios/cadastro/">
-                Cadastro
-            </a>
-        </li>
+                <li>
+                    <a href="/usuarios/cadastro/">
+                        Cadastro
+                    </a>
+                </li>
 
-    {% endif %}
+            {% endif %}
 
-    <li>
+            <li>
 
-        <button id="theme-toggle">
-            🌙
-        </button>
+                <button id="theme-toggle">
+                    🌙
+                </button>
 
-    </li>
+            </li>
 
-</ul>
+        </ul>
 
     </div>
 

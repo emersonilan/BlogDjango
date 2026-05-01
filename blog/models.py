@@ -57,6 +57,7 @@ class Post(models.Model):
 
         return self.titulo
 
+
 class Comment(models.Model):
 
     post = models.ForeignKey(
