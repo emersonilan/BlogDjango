@@ -79,7 +79,7 @@ def posts(request):
 
     paginator = Paginator(
         posts,
-        3
+        9
     )
 
     page = request.GET.get('page')

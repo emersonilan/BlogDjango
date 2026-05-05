@@ -986,3 +986,9 @@ main {
     }
 }
 
+.error-message {
+    color: #ef4444;
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: center;
+}

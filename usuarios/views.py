@@ -25,17 +25,29 @@ def cadastro(request):
 
     if request.method == 'POST':
 
-        username = request.POST.get(
-            'username'
-        )
+        username = request.POST.get('username', '').strip()
+        email = request.POST.get('email', '').strip()
+        password = request.POST.get('password', '').strip()
 
-        email = request.POST.get(
-            'email'
-        )
+        if User.objects.filter(username=username).exists():
 
-        password = request.POST.get(
-            'password'
-        )
+            return render(
+                request,
+                'usuarios/cadastro.html',
+                {
+                    'erro': 'Esse nome de usuário já está em uso.'
+                }
+            )
+
+        if User.objects.filter(email=email).exists():
+
+            return render(
+                request,
+                'usuarios/cadastro.html',
+                {
+                    'erro': 'Esse e-mail já está em uso.'
+                }
+            )
 
         User.objects.create_user(
             username=username,
@@ -43,9 +55,7 @@ def cadastro(request):
             password=password
         )
 
-        return redirect(
-            'login'
-        )
+        return redirect('login')
 
     return render(
         request,
@@ -119,6 +129,7 @@ def perfil(request):
         }
     )
 
+
 def perfil_usuario(
     request,
     username
@@ -148,6 +159,7 @@ def perfil_usuario(
             'perfil_user': user
         }
     )
+
 
 def editar_perfil(request):
 
