@@ -18,44 +18,204 @@ body {
 }
 
 header {
-    background-color: #111827;
-    padding: 20px 0;
+    background: #111827;
     border-bottom: 1px solid #1e293b;
+    padding: 18px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
 }
 
 .nav-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+}
+
+.logo-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    background: linear-gradient(
+        135deg,
+        #38bdf8,
+        #6366f1
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 8px 25px rgba(
+        59,
+        130,
+        246,
+        0.35
+    );
+    transition: 0.3s;
+    flex-shrink: 0;
+}
+
+.logo:hover .logo-icon {
+    transform: rotate(-5deg) scale(1.05);
+}
+
+.logo-text {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    line-height: 1;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #cbd5e1
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    transition: 0.3s;
+}
+
+.logo:hover .logo-text {
     color: #38bdf8;
+}
+
+.logo,
+.logo:hover,
+.logo:visited,
+.logo:active {
+    text-decoration: none;
 }
 
 .nav-links {
     display: flex;
-    list-style: none;
-    gap: 20px;
     align-items: center;
+    gap: 28px;
+    list-style: none;
 }
 
 .nav-links a {
+    color: #cbd5e1;
     text-decoration: none;
-    color: white;
+    font-size: 16px;
     transition: 0.3s;
+    position: relative;
 }
 
 .nav-links a:hover {
     color: #38bdf8;
 }
 
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 2px;
+    background: #38bdf8;
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
 #theme-toggle {
-    background: none;
+    background: #1e293b;
     border: none;
-    font-size: 20px;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
     cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
     color: white;
+}
+
+#theme-toggle:hover {
+    background: #334155;
+    transform: scale(1.08);
+}
+
+/* LIGHT MODE */
+
+.light-mode header {
+    background: white;
+    border-bottom: 1px solid #cbd5e1;
+}
+
+.light-mode .logo-text {
+    background: linear-gradient(
+        90deg,
+        #0f172a,
+        #334155
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+.light-mode .nav-links a {
+    color: #334155;
+}
+
+.light-mode #theme-toggle {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .container {
+        width: 94%;
+    }
+
+    header {
+        padding: 18px 0;
+    }
+
+    .nav-container {
+        flex-direction: column;
+        gap: 18px;
+        text-align: center;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .logo-text {
+        font-size: 26px;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
 }
 
 main {
@@ -718,10 +878,6 @@ main {
         gap: 14px;
     }
 
-    .logo {
-        font-size: 30px;
-    }
-
     h2 {
         font-size: 32px;
     }
@@ -829,3 +985,4 @@ main {
         font-size: 16px;
     }
 }
+

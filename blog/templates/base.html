@@ -8,55 +8,55 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
-        Meu Blog
+        DevSpace | Blog de Programação
     </title>
 
-    <link
-        rel="stylesheet"
-        href="{% static 'css/style.css' %}"
-    >
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2">
 
 </head>
 
 <body>
 
-<header>
+    <header>
 
-    <div class="container nav-container">
+        <div class="container nav-container">
 
-        <h1 class="logo">
-            <a href="/">
-                Meu Blog
+            <a href="/" class="logo">
+
+                <span class="logo-icon">
+                    &lt;/&gt;
+                </span>
+
+                <span class="logo-text">
+                    DevSpace
+                </span>
+
             </a>
-        </h1>
 
-        <ul class="nav-links">
+            <ul class="nav-links">
 
-            <li>
-                <a href="/">
-                    Home
-                </a>
-            </li>
+                <li>
+                    <a href="/">
+                        Home
+                    </a>
+                </li>
 
-            <li>
-                <a href="/posts/">
-                    Posts
-                </a>
-            </li>
+                <li>
+                    <a href="/posts/">
+                        Posts
+                    </a>
+                </li>
 
-            <li>
-                <a href="/sobre/">
-                    Sobre
-                </a>
-            </li>
+                <li>
+                    <a href="/sobre/">
+                        Sobre
+                    </a>
+                </li>
 
-            {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
 
                 <li>
                     <a href="/usuarios/perfil/">
@@ -70,7 +70,7 @@
                     </a>
                 </li>
 
-            {% else %}
+                {% else %}
 
                 <li>
                     <a href="/usuarios/login/">
@@ -84,84 +84,84 @@
                     </a>
                 </li>
 
-            {% endif %}
+                {% endif %}
 
-            <li>
+                <li>
 
-                <button id="theme-toggle">
-                    🌙
-                </button>
+                    <button id="theme-toggle">
+                        🌙
+                    </button>
 
-            </li>
+                </li>
 
-        </ul>
+            </ul>
 
-    </div>
+        </div>
 
-</header>
+    </header>
 
-<main class="container">
+    <main class="container">
 
-    {% block content %}
-    {% endblock %}
+        {% block content %}
+        {% endblock %}
 
-</main>
+    </main>
 
-<script>
+    <script>
 
-const button =
-    document.getElementById(
-        'theme-toggle'
-    )
+        const button =
+            document.getElementById(
+                'theme-toggle'
+            )
 
-const body = document.body
-
-if (
-    localStorage.getItem('theme')
-    === 'light'
-) {
-
-    body.classList.add(
-        'light-mode'
-    )
-
-    button.innerText = '☀️'
-}
-
-button.addEventListener(
-    'click',
-    () => {
-
-        body.classList.toggle(
-            'light-mode'
-        )
+        const body = document.body
 
         if (
-            body.classList.contains(
-                'light-mode'
-            )
+            localStorage.getItem('theme')
+            === 'light'
         ) {
 
-            localStorage.setItem(
-                'theme',
-                'light'
+            body.classList.add(
+                'light-mode'
             )
 
             button.innerText = '☀️'
-
-        } else {
-
-            localStorage.setItem(
-                'theme',
-                'dark'
-            )
-
-            button.innerText = '🌙'
         }
-    }
-)
 
-</script>
+        button.addEventListener(
+            'click',
+            () => {
+
+                body.classList.toggle(
+                    'light-mode'
+                )
+
+                if (
+                    body.classList.contains(
+                        'light-mode'
+                    )
+                ) {
+
+                    localStorage.setItem(
+                        'theme',
+                        'light'
+                    )
+
+                    button.innerText = '☀️'
+
+                } else {
+
+                    localStorage.setItem(
+                        'theme',
+                        'dark'
+                    )
+
+                    button.innerText = '🌙'
+                }
+            }
+        )
+
+    </script>
 
 </body>
 
